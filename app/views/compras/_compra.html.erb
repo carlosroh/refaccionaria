@@ -1,0 +1,51 @@
+<!--- --->
+<h1>Datos de la compra</h1>
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+  <div class="span4">
+    <p class="lead">
+      <strong>Numero de compra:</strong>
+      <%= @compra.id %>
+    </p>
+
+    <p class="lead">
+      <strong>Empleado:</strong>
+      <% @empl = Empleado.find(@compra.num_empleado) %>
+      <%= @empl.nombre %>
+    </p>
+  </div>
+  
+  <div class="span4">
+    <p class="lead">
+      <strong>Num proveedor:</strong>
+      <%= @compra.proveedor_id %>
+    </p>
+
+    <p class="lead">
+      <strong>Num factura:</strong>
+      <%= @compra.num_factura %>
+    </p>
+  </div>
+  
+  <div class="span4">
+    <p class="lead">
+      <strong>Fecha:</strong>
+      <%= @compra.fecha_factura %>
+    </p>
+    <p class="lead">
+      <strong>Estado:</strong>
+      <% if @compra.cerrado %>
+        <span style="color: red;">Cerrado</span>
+      <% else %>
+        <%= "Abierto" %>
+      <% end %>
+    </p>
+  </div>
+</div>
+
+<% if !@compra.cerrado  or current_empleado.administrador %>
+  <%= link_to 'Editar datos', edit_compra_path(@compra), class: 'btn' %>
+<% end %>
+<%= link_to 'Regresar', compras_path, class: 'btn' %>
+

@@ -1,0 +1,23 @@
+<h1>Informacion del producto agregado al carrito</h1>
+
+<p id="notice"><%= notice %></p>
+
+<p class="lead">
+  <b>Producto:</b>
+  <% nombre = Producto.find(@ventas_producto.producto_id).descripcion %>
+  <%= nombre %>
+</p>
+
+<p class="lead">
+  <b>Cantidad producto:</b>
+  <%= @ventas_producto.cantidad_producto %>
+</p>
+
+<p class="lead">
+  <b>Precio:</b>
+  <%= @ventas_producto.precio %>
+</p>
+
+
+<%= link_to 'Edit', edit_no_compra_ventas_producto_path(@ventas_producto), class: 'btn btn-large' %> |
+<%= link_to 'Back', no_compra_ventas_productos_path, class: 'btn btn-large' %>

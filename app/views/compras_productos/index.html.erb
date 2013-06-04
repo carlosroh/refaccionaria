@@ -1,0 +1,40 @@
+<!--- --->
+
+<%= render @compra %>
+
+<% if !@compra.cerrado %>
+  <h2>Busqueda de producto</h2>
+  <%= link_to 'Agregar producto', new_compra_compras_producto_path(@compra),class: 'btn btn-large' %>
+<% end %>
+
+<h2>Lista de productos de la compra</h2>
+<table class="table">
+  <tr>
+    <th>Id producto</th>
+    <th>Nombre del producto</th>
+    <th>Precio de compra</th>
+    <th>Cantidad</th>
+    <th>Total</th>
+<!--    <th></th>-->
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @compras_productos.each do |compras_producto| %>
+  <tr>
+    <td><%= compras_producto.producto_id %></td>
+    <% @producto = Producto.find(compras_producto.producto_id) %>
+    <td><%= @producto.descripcion %></td>
+    <td><%= compras_producto.precio %></td>
+    <td><%= compras_producto.cantidad %></td>
+    <td><%= total(compras_producto.cantidad, compras_producto.precio) %></td>
+<!--    <td><%= link_to 'Mostrar', compra_compras_producto_path(@compra, compras_producto) %></td>-->
+    <td><%= link_to 'Editar', edit_compra_compras_producto_path(@compra, compras_producto) %></td>
+    <td><%= link_to 'Borrar', compra_compras_producto_path(@compra, compras_producto), method: :delete, data: { confirm: 'Esta seguro que lo quiere borrar de la lista? Despues de esto, nunca podra recuperarlo.' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<% link_to 'Agregar producto', new_compra_compras_producto_path, class:'btn btn-large' %>

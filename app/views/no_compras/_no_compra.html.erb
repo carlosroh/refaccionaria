@@ -1,0 +1,28 @@
+<h1> Datos de la venta </h1>
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+  <div class="span4">
+    <p class="lead">
+      <strong>Cliente:</strong>
+      <%= @venta.cliente_id %>
+    </p>
+
+    <p class="lead">
+      <strong>Vendedor:</strong>
+      <% vendedor = Empleado.find(@venta.vendedor_id) %>
+      <%= vendedor.nombre %>
+    </p>
+  </div>
+
+  <div class="span4">
+    <p class="lead">
+      <strong>Fecha:</strong>
+      <%= @venta.created_at %>
+    </p>
+  </div>
+</div>
+
+<%= link_to 'Editar datos', edit_no_compra_path(@venta), class: 'btn'  %>
+<%= link_to 'Regresar', no_compras_path, class: 'btn' %>
+

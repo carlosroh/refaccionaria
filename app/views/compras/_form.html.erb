@@ -1,0 +1,39 @@
+<!--- --->
+
+<%= form_for(@compra) do |f| %>
+  <% if @compra.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@compra.errors.count, "errores") %> impiden que la compra sea guardada:</h2>
+
+      <ul>
+      <% @compra.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <% f.label :num_empleado %><br />
+    <%= f.number_field :num_empleado, value: current_empleado.id %>
+  </div> 
+  
+  <div class="field">
+    <%= f.label :proveedor_id %><br />
+    <%= f.number_field :proveedor_id %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :num_factura %><br />
+    <%= f.number_field :num_factura %>
+  </div>
+  
+  <div class="field">
+    <%= f.label 'Fecha' %><br />
+    <%= f.date_select :fecha_factura %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit 'Guardar', class: 'btn btn-primary'%>
+  </div>
+<% end %>

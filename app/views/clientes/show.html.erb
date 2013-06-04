@@ -1,0 +1,32 @@
+<h1>Informacion del cliente</h1>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Nombre:</b>
+  <%= @cliente.nombre %>
+</p>
+
+<p>
+  <b>RFC:</b>
+  <%= @cliente.rfc %>
+</p>
+
+<p>
+  <b>Direccion fiscal:</b>
+  <%= @cliente.direccion_fiscal %>
+</p>
+
+<p>
+  <b>Ciudad:</b>
+  <%= @cliente.ciudad %>
+</p>
+
+<p>
+  <b>Mayoreo:</b>
+  <%= mayorista?(@cliente) %>
+</p>
+
+
+<%= link_to 'Editar', edit_cliente_path(@cliente), class: 'btn btn-primary' %> |
+<%= link_to 'Regresar', clientes_path, class: 'btn btn-large' %>

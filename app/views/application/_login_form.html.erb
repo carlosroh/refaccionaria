@@ -1,0 +1,7 @@
+<%= form_for(:session, url: sessions_path, html: {class: 'navbar-form pull-right'}) do |f| %>
+  <%= f.text_field :id, class: 'span2', type: 'text', placeholder: 'Clave de usuario' %>
+  <%= f.password_field :password, class: 'span2', type: 'password', placeholder: 'Contraseña' %>
+  <%= f.submit 'Iniciar sesión', class: 'btn' %>
+<% end %>
+
+

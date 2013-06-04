@@ -1,0 +1,37 @@
+<%= form_for(@cliente) do |f| %>
+  <% if @cliente.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@cliente.errors.count, "error") %> prohibited this cliente from being saved:</h2>
+
+      <ul>
+      <% @cliente.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nombre %><br />
+    <%= f.text_field :nombre %>
+  </div>
+  <div class="field">
+    <%= f.label :rfc %><br />
+    <%= f.text_field :rfc %>
+  </div>
+  <div class="field">
+    <%= f.label :direccion_fiscal %><br />
+    <%= f.text_field :direccion_fiscal %>
+  </div>
+  <div class="field">
+    <%= f.label :ciudad %><br />
+    <%= f.text_field :ciudad %>
+  </div>
+  <div class="field">
+    <%= f.label :mayoreo %><br />
+    <%= f.check_box :mayoreo %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Guardar', class: 'btn btn-primary btn-large' %>
+  </div>
+<% end %>

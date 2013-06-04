@@ -1,0 +1,30 @@
+<!--- formulario ventas --->
+<%= form_for(@venta) do |f| %>
+  <% if @venta.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@venta.errors.count, "errores") %> tienen que corregirse:</h2>
+
+      <ul>
+      <% @venta.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+<!--  <div class="field">-->
+<!--    <% f.label :vendedor_id %><br />-->
+<!--    <%= f.number_field :vendedor_id, value: current_empleado.id %>-->
+<!--  </div>-->
+  
+  <p><strong>Vendedor:</strong> <%= current_empleado.nombre %> </p>
+  
+  <div class="field">
+    <%= f.label :cliente_id %><br />
+    <%= f.number_field :cliente_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit 'Guardar venta', class: 'btn btn-primary btn-large' %>
+  </div>
+<% end %>

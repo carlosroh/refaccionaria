@@ -1,0 +1,33 @@
+<h1>Lista de clientes</h1>
+
+<table class = "table">
+  <tr>
+    <th>No. Cliente</th>
+    <th>Nombre</th>
+    <th>RFC</th>
+    <th>Direccion fiscal</th>
+    <th>Ciudad</th>
+    <th>Mayoreo</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @clientes.each do |cliente| %>
+  <tr>
+    <td><%= cliente.id %></td>
+    <td><%= cliente.nombre %></td>
+    <td><%= cliente.rfc %></td>
+    <td><%= cliente.direccion_fiscal %></td>
+    <td><%= cliente.ciudad %></td>
+    <td><%= mayorista?(cliente) %></td>
+    <td><%= link_to 'Show', cliente %></td>
+    <td><%= link_to 'Edit', edit_cliente_path(cliente) %></td>
+    <td><%= link_to 'Destroy', cliente, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Agregar cliente', new_cliente_path, class: 'btn btn-large' %>

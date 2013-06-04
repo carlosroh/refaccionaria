@@ -1,0 +1,24 @@
+Thu, 16 May 2013 18:30:07 -0700
+doc/README_FOR_APP	Tue, 26 Mar 2013 21:13:06 -0700
+app/controllers/application_controller.rb	Fri, 12 Apr 2013 00:07:52 -0700
+app/controllers/compras_controller.rb	Wed, 15 May 2013 18:05:50 -0700
+app/controllers/compras_productos_controller.rb	Wed, 15 May 2013 20:46:27 -0700
+app/controllers/empleados_controller.rb	Sun, 05 May 2013 15:14:03 -0700
+app/controllers/no_compras_controller.rb	Wed, 15 May 2013 17:49:58 -0700
+app/controllers/productos_controller.rb	Sat, 11 May 2013 13:34:06 -0700
+app/controllers/sessions_controller.rb	Thu, 02 May 2013 21:39:40 -0700
+app/controllers/ventas_productos_controller.rb	Wed, 15 May 2013 21:46:19 -0700
+app/helpers/application_helper.rb	Tue, 26 Mar 2013 21:13:06 -0700
+app/helpers/compras_helper.rb	Mon, 13 May 2013 21:17:28 -0700
+app/helpers/compras_productos_helper.rb	Tue, 14 May 2013 18:10:27 -0700
+app/helpers/empleados_helper.rb	Wed, 10 Apr 2013 10:26:16 -0700
+app/helpers/no_compras_helper.rb	Wed, 15 May 2013 16:57:04 -0700
+app/helpers/productos_helper.rb	Wed, 15 May 2013 22:00:34 -0700
+app/helpers/sessions_helper.rb	Tue, 14 May 2013 16:08:49 -0700
+app/helpers/ventas_productos_helper.rb	Wed, 15 May 2013 12:39:19 -0700
+app/models/compra.rb	Wed, 15 May 2013 17:44:12 -0700
+app/models/compras_producto.rb	Tue, 14 May 2013 23:28:13 -0700
+app/models/empleado.rb	Wed, 24 Apr 2013 22:54:26 -0700
+app/models/no_compra.rb	Wed, 15 May 2013 17:52:09 -0700
+app/models/producto.rb	Wed, 15 May 2013 19:35:25 -0700
+app/models/ventas_producto.rb	Wed, 15 May 2013 20:20:16 -0700

@@ -1,0 +1,25 @@
+<h1>Lista de proveedores</h1>
+
+<table class = "table">
+  <tr>
+    <th>No. Proveedor</th>
+    <th>Nombre</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @proveedors.each do |proveedor| %>
+  <tr>
+    <td><%= proveedor.id %></td>
+    <td><%= proveedor.nombre %></td>
+    <td><%= link_to 'Show', proveedor %></td>
+    <td><%= link_to 'Edit', edit_proveedor_path(proveedor) %></td>
+    <td><%= link_to 'Destroy', proveedor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Crear proveedor', new_proveedor_path, class: 'btn btn-large' %>

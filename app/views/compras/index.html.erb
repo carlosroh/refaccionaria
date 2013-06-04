@@ -1,0 +1,34 @@
+<h1>Lista de compras</h1>
+
+<table class="table">
+  <tr>
+    <th>Id</th>
+    <th>Ultimo que modificó</th>
+    <th>Num proveedor</th>
+    <th>Num factura</th>
+    <th>Fecha</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @compras.each do |compra| %>
+  <tr>
+    <td><%= compra.id %></td>
+    <td>
+      <% @empl = Empleado.find(compra.num_empleado) %>
+      <%= @empl.nombre %>
+    </td>
+    <td><%= compra.proveedor_id %></td>
+    <td><%= compra.num_factura %></td>
+    <td><%= compra.fecha_factura %></td>
+    <td><%= link_to 'Mostrar', compra_compras_productos_path(compra) %></td>
+<!--    <td><%= link_to 'Editar', edit_compra_path(compra) %></td>-->
+<!--    <td><%= link_to 'Destruir', compra, method: :delete, data: { confirm: 'Esta seguro que quiere eliminar la compra?' } %></td>-->
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Nueva Compra', new_compra_path, class: 'btn btn-large' %>

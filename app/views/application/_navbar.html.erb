@@ -1,0 +1,58 @@
+<!---  --->
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="brand" href="http://localhost:3000">Refacciones Ortega</a>
+        <div class="nav-collapse collapse">
+          <ul class="nav">
+<!--            <li class="active"><a href="http://localhost:3000">Home</a></li>-->
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Catálogos<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><%= link_to 'Productos', productos_path%></li>
+                <li><%= link_to 'Empleados', empleados_path%></li>
+                <li><%= link_to 'Proveedores', proveedors_path %></li>
+                <li><%= link_to 'Clientes', clientes_path %></li>
+                
+<!--                <li class="divider"></li>-->
+<!--                <li class="nav-header"></li>-->
+<!--                <li><%= link_to 'Compras', compras_path%></li>-->
+<!--                <li><%= link_to 'Ventas', no_compras_path%></li>-->
+              </ul>
+            </li>
+            
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Acciones <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><%= link_to 'Nueva compra', new_compra_path%></li>
+                <li><%= link_to 'Nueva venta', new_no_compra_path%></li>
+              </ul>
+            </li>
+            
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Consultas <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><%= link_to 'Compras', compras_path%></li>
+                <li><%= link_to 'Ventas', no_compras_path%></li>
+              </ul>
+            </li>
+          </ul>
+          
+          
+          <% if cookies[:remember_token] %>
+            <%= link_to current_empleado.nombre, current_empleado, class: 'btn' %>
+            <%= link_to 'Cerrar sesión', signout_path(current_empleado.object_id), method: "delete", class: 'btn btn-primary' %>
+          <% else %>
+            <%= render 'login_form' %>
+          <% end %>
+          
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+  </div>
+

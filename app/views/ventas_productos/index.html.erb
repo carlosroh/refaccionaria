@@ -1,0 +1,40 @@
+<!--- informacion de la venta --->
+<%= render @venta %>
+
+<h2>Busqueda de producto</h2>
+<%= link_to 'Agregar producto',new_no_compra_ventas_producto_path(@venta), class: 'btn' %>
+
+<h2>Lista de productos de la venta</h2>
+
+<table class="table">
+  <tr>
+    <th>Producto</th>
+    <th>Cantidad producto</th>
+    <th>Precios</th>
+    <th>Importe</th>
+    
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @ventas_productos.each do |ventas_producto| %>
+  <tr>
+    <% nombre = Producto.find(ventas_producto.producto_id).descripcion %>
+    <td><%= nombre %></td>
+    <td><%= ventas_producto.cantidad_producto %></td>
+    <td><%= ventas_producto.precio %></td>
+    <td><%= ventas_producto.precio * ventas_producto.cantidad_producto %></td>
+<!--    <td><%= link_to 'Mostrar', no_compra_ventas_producto_path(@venta, ventas_producto) %></td>-->
+    <td>
+      <%= link_to 'Editar', edit_no_compra_ventas_producto_path(@venta, ventas_producto) %>
+      </td>
+    <td><%= link_to 'Borrar de la lista', no_compra_ventas_producto_path(@venta, ventas_producto), method: :delete, data: { confirm: 'Esta seguro que quiere quitar este producto de la lista?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Finalizar la venta', '#', class:'btn btn-primary btn-large' %>
+<%= link_to 'Agregar producto', new_no_compra_ventas_producto_path, class: 'btn btn-large' %>
+<%= link_to 'Regresar a ventas', no_compras_path, class:'btn btn-large' %>

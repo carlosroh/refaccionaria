@@ -1,0 +1,39 @@
+<h1> Lista de productos </h1>
+
+<table class="table table-striped" >
+  <tr>
+    <th>Producto</th>
+    <th>Descripcion</th>
+    <th>Precio menudeo</th>
+    <th>Precio mayoreo</th>
+    <th>Máximo de inventario</th>
+    <th>Mínimo de inventario</th>
+    <th>Existencia</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  
+  <% @productos.each do |producto| %>
+  <% if producto.id % 2 == 0 %>
+  <tr <%= 'class="info"' %> >
+  <% end %>
+  
+    <!--  Atributos  -->
+    <td><%= producto.id %></td>
+    <td><%= producto.descripcion %></td>
+    <td><%= producto.precio_max %></td>
+    <td><%= producto.precio_min %></td>
+    <td><%= producto.maximo %></td>
+    <td><%= producto.minimo %></td>
+    <td><%= cantidad_producto(producto) %></td>
+    
+    <!--  Acciones  -->
+    <td><%= link_to 'Mostrar', producto %></td>
+    <td><%= link_to 'Editar', edit_producto_path(producto) %></td>
+    <td><%= link_to 'Destruir', producto, method: :delete, data: { confirm: '¿Está seguro?' } %></td>
+  </tr>
+  <% end %>
+</table>
+
+<%= link_to 'Crear producto', new_producto_path(), class: 'btn btn-large' %>

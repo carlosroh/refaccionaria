@@ -1,0 +1,44 @@
+notas:  
+  
+  actualizacion de las gemas
+    bundle update
+    
+  creacion de las bases de datos
+       en el gemfile:
+            habilitar gem 'mysql'
+            dentro y fuera del grupo :development y :test
+            
+       rake db:create
+            db:migrate
+            
+       fallo en las migraciones
+            en db/migrate/{file} reemplazar t.int por t.integer 
+                      (http://railsforum.com/viewtopic.php?id=28147)
+                      
+  modelo empleado
+        agregado campo administrador
+        :id esta implicito, por eso no aparece en la definicion del modelo
+        
+        actualizar campos
+            db:rollback
+            modificar el archivo db/migrate/archivo
+            db:migrate
+            db:test:prepare
+            
+  rails generate scaffold modelo { dato:tipo, ...}
+        genera todo el MVC
+        
+  el tema general lo puedes poner en app/views/layouts/application.html.erb
+  
+  
+  
+  ===    ===    ===    ===    ===    ===    ===    ===    ===    ===  
+  
+  Al momento de la creacion de un producto, agregar un campo a la tabla de inventario, donde se especifique la cantidad inicial de producto, que solo puede accederse al momento de crear el producto. El campo esta en la vista de new fuera del partial _form, con un valor por defecto de 0.
+  
+  Al momento de calcular el total de inventario, se tomara la ultima compra, las ventas y el valor de maximo. Nota, verificar si se debe agregar en el inventario un tipo que especifique el maximo y minimo, por si hay actualizaciones en el futuro, no haya cambios o distorciones en el total del producto.
+  
+  Para separar el estilo de la vistas de compras, debemos crear un partial que se encarga la lista, donde llamaramos a este pasandole como parametro el producto (revisar el ejercicio de ticketing)
+  
+  ===    ===    ===    ===    ===    ===    ===    ===    ===    ===  
+  

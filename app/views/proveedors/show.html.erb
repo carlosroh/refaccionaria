@@ -1,0 +1,12 @@
+<h1>Informacion del proveedor</h1>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Nombre:</b>
+  <%= @proveedor.nombre %>
+</p>
+
+
+<%= link_to 'Editar', edit_proveedor_path(@proveedor), class: 'btn btn-primary btn-large' %> |
+<%= link_to 'Regresar', proveedors_path, class: 'btn btn-large' %>

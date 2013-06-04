@@ -1,0 +1,44 @@
+<!-- -->
+
+<%= render 'compra' %>
+
+<%= render 'busca_producto' %>
+
+
+<!--<h2>Lista de productos</h2>-->
+<!--- Perdonenme por esta chicanada, prometo que lo arreglo lo mas pronto que pueda --->
+
+<!--<table class="table">-->
+<!--  <tr>-->
+    <!--- <th>Id compra</th> --->
+<!--    <th>Id producto</th>-->
+<!--    <th>Nombre del producto</th>-->
+<!--    <th>Precio</th>-->
+<!--    <th>Cantidad</th>-->
+<!--    <th>Importe</th>-->
+<!--    <th></th>-->
+<!--    <th></th>-->
+<!--    <th></th>-->
+<!--  </tr>-->
+
+<!--<% @compra.compras_productos.each do |compras_producto| %>-->
+<!--  <tr>-->
+    <!---  <td><%= compras_producto.compra_id %></td> --->
+<!--    <td><%= compras_producto.producto_id %></td>-->
+<!--    <% @producto = Producto.find(compras_producto.producto_id) %>-->
+<!--    <td><%= @producto.descripcion %></td>-->
+<!--    <td><%= compras_producto.precio %></td>-->
+<!--    <td><%= compras_producto.cantidad %></td>-->
+<!--    <td><%= total(compras_producto.cantidad, compras_producto.precio) %></td>-->
+<!--    <td><%= link_to 'Mostrar', compra_compras_producto_path(@compra,  compras_producto) %></td>-->
+<!--    <td><%= link_to 'Editar', edit_compra_compras_producto_path(@compra,  compras_producto) %></td>-->
+<!--    <td><%= link_to 'Borrar de la lista', compra_compras_producto_path(@compra,  compras_producto), method: :delete, data: { confirm: 'Esta seguro que lo quiere destruir?' } %></td>-->
+<!--  </tr>-->
+<!--<% end %>-->
+<!--</table>-->
+
+
+
+
+<!--<%= link_to 'Modificar productos', compra_compras_productos_path(@compra), class: 'btn' %>-->
+<%= link_to 'Regresar', compras_path, class: 'btn' %>

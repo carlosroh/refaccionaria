@@ -1,0 +1,33 @@
+<%= form_for(@producto) do |p| %>
+  <div class="field">
+    <%= p.label :descripcion %>
+    <%= p.text_field :descripcion %>
+  </div>
+  
+  <h3> Precio
+    <div class="field">
+      <%= p.label 'Precio menudeo' %>
+      <%= p.text_field :precio_max %>
+    </div>
+    <div class="field">
+      <%= p.label 'Precio mayoreo' %>
+      <%= p.text_field :precio_min %>
+    </div>
+  </h3>
+  
+  
+  <h3> Inventario
+    <div class="field">
+      <%= p.label :maximo %>
+      <%= p.text_field :maximo %>
+    </div>
+    <div class="field">
+      <%= p.label :minimo %>
+      <%= p.text_field :minimo %>
+    </div>
+  </h3>
+  
+  <div class="control-group">
+   <%= p.submit 'Guardar cambios', class: 'btn btn-large btn-primary' %>
+  </div>
+<% end %>

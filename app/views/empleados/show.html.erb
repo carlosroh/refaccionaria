@@ -1,0 +1,29 @@
+<!--- Vista show del empleado --->
+<h1> <%= @empleado.nombre %> </h1>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Puesto:</b>
+    <% if @empleado.administrador %>
+      <%= "Administrador" %>
+    <% elsif @empleado.compras %>
+      <%= "Compras" %>
+    <% else %>
+      <%= "Vendedor" %>
+    <% end %>
+</p>
+
+<p>
+  <b>Estado:</b>
+  <% if @empleado.activo %>
+    <%= "Activo" %>
+  <% else %>
+    <%= "Inactivo" %>
+  <% end %>
+</p>
+
+<%= link_to 'Editar', edit_empleado_path(@empleado), class: 'btn btn-medium' %>
+
+<% if @empleado.administrador or current_empleado.administrador %>
+  <%= link_to 'Regresar a empleados', empleados_path, class: 'btn btn-medium' %>
+<% end %>

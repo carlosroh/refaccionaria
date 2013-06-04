@@ -1,0 +1,11 @@
+<h1> <%= @producto.descripcion%> </h1>
+
+<p id="notice" class="lead"><%= notice %></p>
+
+<p class="lead"><b>Precio menudeo: </b><%= @producto.precio_max%></p>
+<p class="lead"><b>Precio mayoreo: </b><%= @producto.precio_min%></p>
+
+<p class="lead"><b>Cantidad en existencia: </b><%= cantidad_producto(@producto) %></p>
+<%= link_to 'Editar', edit_producto_path(@producto), class: 'btn btn-medium' %>
+
+<%= link_to 'Regresar', productos_path, class: 'btn btn-medium' %>

@@ -1,0 +1,43 @@
+<h1>Lista de empleados</h1>
+
+<table class="table table-striped" >
+  <tr>
+    <th>Empleado</th>
+    <th>Nombre</th>
+    <th>Puesto</th>
+    <th>Estado</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @empleados.each do |empleado| %>
+  <tr <%= "class='info'" if empleado.id % 2 == 0 %> >
+    <td><%= empleado.id %></td>
+    <td><%= empleado.nombre %></td>
+    <td>
+      <% if empleado.administrador %>
+        <%= "Administrador" %>
+      <% elsif empleado.compras %>
+        <%= "Compras" %>
+      <% else %>
+        <%= "Vendedor" %>
+      <% end %>
+    </td>
+    <td>
+      <% if empleado.activo %>
+        <%= "Activo" %>
+      <% else %>
+        <%= "Inactivo" %>
+      <% end %>
+    </td>
+    <td><%= link_to 'Mostrar', empleado %></td>
+    <td><%= link_to 'Editar', edit_empleado_path(empleado) %></td>
+    <td><%= link_to 'Destruir', empleado, method: :delete, data: { confirm: '¿Está seguro?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Crear empleado', new_empleado_path, class: 'btn btn-large' %>

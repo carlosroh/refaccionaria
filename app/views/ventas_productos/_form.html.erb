@@ -1,0 +1,34 @@
+<!--- ventas_productos --->
+<%= form_for([@venta, @ventas_producto]) do |f| %>
+  <% if @ventas_producto.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@ventas_producto.errors.count, "error") %> prohibited this ventas_producto from being saved:</h2>
+
+      <ul>
+      <% @ventas_producto.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :producto_id %><br />
+<!--    <%= f.number_field :producto_id %>-->
+    <%= f.autocomplete_field :producto_id,  autocomplete_producto_descripcion_no_compra_ventas_productos_path, :id_element => '#ventas_producto_producto_id' %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :cantidad_producto %><br />
+    <%= f.number_field :cantidad_producto %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :precio %><br />
+    <%= f.text_field :precio %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit 'Guardar', class: 'btn btn-primary btn-large' %>
+  </div>
+<% end %>

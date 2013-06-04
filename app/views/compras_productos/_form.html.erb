@@ -1,0 +1,35 @@
+<!--- compras_productos --->
+<%= form_for( [@compra, @compras_producto] ) do |f| %>
+  <% if @compras_producto.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@compras_producto.errors.count, "errores") %> deben corregirse antes de poder guardar:</h2>
+
+      <ul>
+      <% @compras_producto.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="field">
+  
+    <%= f.label :producto_id %><br />
+<!--    <%= f.number_field :producto_id %>-->
+    <%= f.autocomplete_field :producto_id,  autocomplete_producto_descripcion_compra_compras_productos_path, :id_element => '#compras_producto_producto_id' %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :precio %><br />
+    <%= f.text_field :precio %>
+  </div>
+    
+  <div class="field">
+    <%= f.label :cantidad %><br />
+    <%= f.text_field :cantidad %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit 'Guardar', class: 'btn btn-primary btn-large'%>
+  </div>
+<% end %>
