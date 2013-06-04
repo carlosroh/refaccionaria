@@ -22,8 +22,7 @@
   <% end %>
 </p>
 
-<%= link_to 'Editar', edit_empleado_path(@empleado), class: 'btn btn-medium' %>
-
 <% if @empleado.administrador or current_empleado.administrador %>
+  <%= link_to 'Editar', edit_empleado_path(@empleado), class: 'btn btn-medium' %>
   <%= link_to 'Regresar a empleados', empleados_path, class: 'btn btn-medium' %>
 <% end %>

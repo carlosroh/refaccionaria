@@ -1,13 +1,12 @@
 class ComprasController < ApplicationController
-#  include SessionsHelper
   before_filter :es_de_compras
+  before_filter :busca_compra, :only => [ :show, :edit, :update, :destroy, :cerrar_compra ]
   
   def index
     @compras = Compra.all
   end
 
   def show
-    @compra = Compra.find(params[:id])
   end
 
   def new
@@ -15,7 +14,6 @@ class ComprasController < ApplicationController
   end
 
   def edit
-    @compra = Compra.find(params[:id])
   end
 
   def create
@@ -29,8 +27,6 @@ class ComprasController < ApplicationController
   end
 
   def update
-    @compra = Compra.find(params[:id])
-
     if @compra.update_attributes(params[:compra])
       redirect_to compra_compras_productos_path(@compra), notice: 'Compra fue actualizada exitosamente.'
     else
@@ -39,9 +35,21 @@ class ComprasController < ApplicationController
   end
 
   def destroy
-    @compra = Compra.find(params[:id])
     @compra.destroy
-
     redirect_to compras_url
   end
+  
+  def cerrar_compra
+    @compra.cerrado = true
+    if @compra.save
+      redirect_to compra_compras_productos_path(@compra), notice: 'Compra fue cerrada exitosamente.'
+    else
+      redirect_to compra_compras_productos_path(@compra), notice: 'No se pudo cerrar la compra. Por favor, verifique los datos de la compra.'
+    end
+  end
+  
+  private
+    def busca_compra
+      @compra = Compra.find(params[:id])
+    end
 end

@@ -21,8 +21,22 @@
       <%= @venta.created_at %>
     </p>
   </div>
+  
+  <div class="span4">
+    <p class="lead">
+      <strong>Estado:</strong>
+      <% if @venta.cerrado %>
+        <span style="color: red;">Cerrado</span>
+      <% else %>
+        <%= "Abierto" %>
+      <% end %>
+    </p>
+  </div>
 </div>
 
-<%= link_to 'Editar datos', edit_no_compra_path(@venta), class: 'btn'  %>
+<% if !@venta.cerrado or current_empleado.administrador %>
+  <%= link_to 'Terminar venta', terminar_venta_no_compra_path(@venta), class: 'btn btn-success'  %>
+  <%= link_to 'Editar venta', edit_no_compra_path(@venta), class: 'btn'  %>
+<% end %>
 <%= link_to 'Regresar', no_compras_path, class: 'btn' %>
 

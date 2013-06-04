@@ -1,8 +1,10 @@
 <!--- informacion de la venta --->
 <%= render @venta %>
 
-<h2>Busqueda de producto</h2>
-<%= link_to 'Agregar producto',new_no_compra_ventas_producto_path(@venta), class: 'btn' %>
+<% if !@venta.cerrado %>
+  <h2>Busqueda de producto</h2>
+  <%= link_to 'Agregar producto',new_no_compra_ventas_producto_path(@venta), class: 'btn' %>
+<% end %>
 
 <h2>Lista de productos de la venta</h2>
 
@@ -24,17 +26,13 @@
     <td><%= ventas_producto.cantidad_producto %></td>
     <td><%= ventas_producto.precio %></td>
     <td><%= ventas_producto.precio * ventas_producto.cantidad_producto %></td>
-<!--    <td><%= link_to 'Mostrar', no_compra_ventas_producto_path(@venta, ventas_producto) %></td>-->
-    <td>
-      <%= link_to 'Editar', edit_no_compra_ventas_producto_path(@venta, ventas_producto) %>
-      </td>
-    <td><%= link_to 'Borrar de la lista', no_compra_ventas_producto_path(@venta, ventas_producto), method: :delete, data: { confirm: 'Esta seguro que quiere quitar este producto de la lista?' } %></td>
+
+    <% if !@venta.cerrado or current_empleado.administrador %>
+      <td><%= link_to 'Editar', edit_no_compra_ventas_producto_path(@venta, ventas_producto) %></td>
+      <td><%= link_to 'Borrar de la lista', no_compra_ventas_producto_path(@venta, ventas_producto), method: :delete, data: { confirm: 'Esta seguro que quiere quitar este producto de la lista?' } %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>
 
 <br />
-
-<%= link_to 'Finalizar la venta', '#', class:'btn btn-primary btn-large' %>
-<%= link_to 'Agregar producto', new_no_compra_ventas_producto_path, class: 'btn btn-large' %>
-<%= link_to 'Regresar a ventas', no_compras_path, class:'btn btn-large' %>

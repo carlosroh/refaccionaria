@@ -45,7 +45,8 @@
 </div>
 
 <% if !@compra.cerrado  or current_empleado.administrador %>
-  <%= link_to 'Editar datos', edit_compra_path(@compra), class: 'btn' %>
+  <%= link_to 'Terminar compra', cerrar_compra_compra_path(@compra), class: 'btn btn-success' %>
+  <%= link_to 'Editar compra', edit_compra_path(@compra), class: 'btn' %>
 <% end %>
-<%= link_to 'Regresar', compras_path, class: 'btn' %>
 
+<%= link_to 'Regresar', compras_path, class: 'btn' %>

@@ -1,12 +1,12 @@
 class NoComprasController < ApplicationController
-  before_filter :es_administrador
+  before_filter :es_administrador, :only => [:index, :delete]
+  before_filter :buscar_venta, :only => [:show, :edit, :update, :destroy, :terminar_venta]
 
   def index
     @ventas = NoCompra.all
   end
 
   def show
-    @venta = NoCompra.find(params[:id])
   end
 
   def new
@@ -14,7 +14,6 @@ class NoComprasController < ApplicationController
   end
 
   def edit
-    @venta = NoCompra.find(params[:id])
   end
 
   def create
@@ -29,8 +28,6 @@ class NoComprasController < ApplicationController
   end
 
   def update
-    @venta = NoCompra.find(params[:id])
-
     if @venta.update_attributes(params[:venta])
       redirect_to @venta, notice: 'La venta ha sido actualizada.' 
     else
@@ -39,9 +36,19 @@ class NoComprasController < ApplicationController
   end
 
   def destroy
-    @venta = NoCompra.find(params[:id])
     @venta.destroy
-
     redirect_to no_compras_path
   end
+  
+  def terminar_venta
+    @venta.cerrado = true
+    if @venta.save
+      redirect_to no_compra_ventas_productos_path(@venta), notice: 'Venta fue cerrada exitosamente.'
+    end
+  end
+  
+  private
+    def buscar_venta
+      @venta = NoCompra.find(params[:id])
+    end
 end

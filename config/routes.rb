@@ -6,12 +6,20 @@ Refaccionaria::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   
   resources :compras do
+    member do
+      get :cerrar_compra
+    end
+    
     resources :compras_productos do
       get :autocomplete_producto_descripcion, :on => :collection
     end
   end
   
   resources :no_compras do # Ventas
+    member do
+      get :terminar_venta
+    end
+    
     resources :ventas_productos do
       get :autocomplete_producto_descripcion, :on => :collection
     end

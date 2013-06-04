@@ -7,5 +7,8 @@ class Compra < ActiveRecord::Base
   attr_accessible :proveedor_id
   
   validates_presence_of :proveedor_id
+  validates_presence_of :num_empleado
+  validates_presence_of :num_factura
+  validates_presence_of :fecha_factura
 
 end

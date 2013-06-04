@@ -22,8 +22,7 @@ class ComprasProductosController < ApplicationController
     @compras_producto = @compra.compras_productos.new(params[:compras_producto])
 
     if @compras_producto.save
-#      redirect_to @compra, notice: 'Compras producto fue creado satisfactoriamente.' 
-      redirect_to compra_compras_producto_path(@compra, @compras_producto), notice: 'Compras producto fue creado satisfactoriamente.' 
+      redirect_to compra_compras_productos_path(@compra), notice: 'Compras producto fue creado satisfactoriamente.' 
     else
       render action: "new"
     end
@@ -31,7 +30,6 @@ class ComprasProductosController < ApplicationController
 
   def update
     if @compras_producto.update_attributes(params[:compras_producto])
-#      redirect_to @compra, notice: 'El producto fue actualizado.'
       redirect_to compra_compras_productos_path(@compra, @compras_producto), notice: 'El producto fue actualizado.'
     else
       render action: "edit"
@@ -40,8 +38,7 @@ class ComprasProductosController < ApplicationController
 
   def destroy
     @compras_producto.destroy
-    redirect_to @compra
-#    redirect_to compra_compras_productos_path
+    redirect_to compra_compras_productos_path(@compra)
   end
   
   private

@@ -15,7 +15,7 @@
     <th>Precio de compra</th>
     <th>Cantidad</th>
     <th>Total</th>
-<!--    <th></th>-->
+
     <th></th>
     <th></th>
   </tr>
@@ -28,9 +28,11 @@
     <td><%= compras_producto.precio %></td>
     <td><%= compras_producto.cantidad %></td>
     <td><%= total(compras_producto.cantidad, compras_producto.precio) %></td>
-<!--    <td><%= link_to 'Mostrar', compra_compras_producto_path(@compra, compras_producto) %></td>-->
-    <td><%= link_to 'Editar', edit_compra_compras_producto_path(@compra, compras_producto) %></td>
-    <td><%= link_to 'Borrar', compra_compras_producto_path(@compra, compras_producto), method: :delete, data: { confirm: 'Esta seguro que lo quiere borrar de la lista? Despues de esto, nunca podra recuperarlo.' } %></td>
+    
+    <% if !@compra.cerrado or current_empleado.administrador %>
+      <td><%= link_to 'Editar', edit_compra_compras_producto_path(@compra, compras_producto) %></td>
+      <td><%= link_to 'Borrar', compra_compras_producto_path(@compra, compras_producto), method: :delete, data: { confirm: 'Esta seguro que lo quiere borrar de la lista? Despues de esto, nunca podra recuperarlo.' } %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>
