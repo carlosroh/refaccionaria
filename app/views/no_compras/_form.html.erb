@@ -2,7 +2,7 @@
 <%= form_for(@venta) do |f| %>
   <% if @venta.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@venta.errors.count, "errores") %> tienen que corregirse:</h2>
+      <h2><%= pluralize(@venta.errors.count, "error (es)") %> tienen que corregirse:</h2>
 
       <ul>
       <% @venta.errors.full_messages.each do |msg| %>

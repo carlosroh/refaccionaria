@@ -17,19 +17,19 @@ class NoComprasController < ApplicationController
   end
 
   def create
-    @venta = NoCompra.new(params[:venta])
+    @venta = NoCompra.new(params[:no_compra])
     @venta.vendedor_id = current_empleado.id
     
     if @venta.save
-      redirect_to @venta, notice: 'La venta fue creada exitosamente.'
+      redirect_to no_compra_ventas_productos_path(@venta), notice: 'La venta fue creada exitosamente.'
     else
       render action: "new"
     end
   end
 
   def update
-    if @venta.update_attributes(params[:venta])
-      redirect_to @venta, notice: 'La venta ha sido actualizada.' 
+    if @venta.update_attributes(params[:no_compra])
+      redirect_to no_compra_ventas_productos_path(@venta), notice: 'La venta ha sido actualizada.' 
     else
       render action: "edit"
     end

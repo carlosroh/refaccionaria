@@ -13,11 +13,11 @@ class ApplicationController < ActionController::Base
       @user = Empleado.find( current_empleado )
       unless @user.administrador
         flash[:error] = 'Usted no puede acceder a este recurso.'
-        redirect_to '/'
+        redirect_to :back
       end
     else
       flash[:error] = 'Inicie sesion antes de acceder a este recurso.'
-      redirect_to '/'
+      redirect_to :back
     end
   end
   

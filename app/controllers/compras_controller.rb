@@ -1,6 +1,7 @@
 class ComprasController < ApplicationController
   before_filter :es_de_compras
   before_filter :busca_compra, :only => [ :show, :edit, :update, :destroy, :cerrar_compra ]
+  before_filter :es_administrador, :only => :destroy
   
   def index
     @compras = Compra.all
