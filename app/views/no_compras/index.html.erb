@@ -1,36 +1,6 @@
 <h1>Lista de ventas</h1>
-
 <p id="notice" class="lead" style="color: red;"><%= flash[:error] %></p>
 
-<table class="table">
-  <tr>
-    <th>Factura</th>
-    <th>Cliente</th>
-    <th>Vendedor</th>
-    <th>Fecha</th>
-    <th></th>
-    <th></th>
-<!--    <th></th>-->
-  </tr>
-
-<% @ventas.each do |venta| %>
-  <% if venta.cerrado %>
-    <tr class="success">
-  <% else %>
-    <tr class="info">
-  <% end %>
-    <td><%= venta.id %></td>
-    <td><%= cliente(venta.cliente_id) %></td>
-    <td><%= nombre_empleado(venta.vendedor_id) %></td>
-    <td><%= venta.created_at.to_date %></td>
-    <td><%= estado(venta) %></td>
-    <td><%= link_to 'Mostrar', no_compra_ventas_productos_path(venta) %></td>
-    <td><%= link_to 'Editar', edit_no_compra_path(venta) %></td>
-<!--    <td><%= link_to 'Destruir', venta, method: :delete, data: { confirm: 'Esta seguro que quiere borrar esta venta?' } %></td>-->
-  </tr>
-<% end %>
-</table>
-
-<br />
+<%= render 'tabla'%>
 
 <%= link_to 'Nueva venta', new_no_compra_path, class: 'btn btn-large' %>

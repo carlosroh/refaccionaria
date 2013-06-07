@@ -25,6 +25,11 @@ Refaccionaria::Application.routes.draw do
       get :terminar_venta
     end
     
+    collection do
+      get :buscar_ventas
+      post :buscar_ventas
+    end
+    
     resources :ventas_productos do
       get :autocomplete_producto_descripcion, :on => :collection
     end

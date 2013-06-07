@@ -2,10 +2,9 @@ class ComprasController < ApplicationController
   before_filter :es_de_compras
   before_filter :busca_compra, :only => [ :show, :edit, :update, :destroy, :cerrar_compra ]
   before_filter :es_administrador, :only => :destroy
-  before_filter :lista_compras, :only => [:index]
-   #, :buscar_compra]
   
   def index
+    @compras = Compra.all
   end
 
   def show
@@ -64,20 +63,15 @@ class ComprasController < ApplicationController
     
     query << "and empleados.nombre like '%#{vendedor}%' " if vendedor.to_str.length > 0 if !vendedor.nil?
     
-    query << "and compras.proveedor_id like '%#{proveedor}%' " if proveedor.to_str.length > 0 if !proveedor.nil?
+    query << "and proveedors.nombre like '%#{proveedor}%' " if proveedor.to_str.length > 0 if !proveedor.nil?
     
-    query <<";"
+    query << ";"
     
-#    @compras = Compra.find_by_sql( "select compras.id, compras.num_empleado, compras.cerrado, compras.proveedor_id, compras.num_factura, compras.fecha_factura from (compras inner join empleados on compras.num_empleado=empleados.id) inner join proveedors on proveedors.id = compras.proveedor_id where compras.created_at BETWEEN '#{fecha_inicio[:year]}/#{fecha_inicio[:month]}/#{fecha_inicio[:day]}' AND '#{fecha_final[:year]}/#{fecha_final[:month]}/#{fecha_final[:day]}' or empleados.nombre = '#{vendedor}' order by compras.created_at;" )
     @compras = Compra.find_by_sql(query)
   end
   
   private
     def busca_compra
       @compra = Compra.find(params[:id])
-    end
-    
-    def lista_compras
-      @compras = Compra.all
     end
 end

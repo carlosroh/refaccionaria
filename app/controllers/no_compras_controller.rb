@@ -47,6 +47,26 @@ class NoComprasController < ApplicationController
     end
   end
   
+  def buscar_ventas
+    vendedor = params[:vendedor]
+    cliente = params[:cliente]
+    fecha_inicio = params[:fecha_inicio]
+    fecha_final = params[:fecha_final]
+    
+    query = "select no_compras.id, no_compras.vendedor_id, no_compras.cerrado, no_compras.cliente_id, no_compras.created_at from (no_compras inner join empleados on no_compras.vendedor_id = empleados.id) inner join clientes on clientes.id = no_compras.cliente_id "
+    
+    query << "where no_compras.created_at BETWEEN '#{fecha_inicio[:year]}/#{fecha_inicio[:month]}/#{fecha_inicio[:day]}' AND '#{fecha_final[:year]}/#{fecha_final[:month]}/#{fecha_final[:day]}' " if !fecha_inicio.nil? or !fecha_final.nil? or !vendedor.nil?
+    
+    query << "and empleados.nombre like '%#{vendedor}%' " if vendedor.to_str.length > 0 if !vendedor.nil?
+    
+    query << "and clientes.nombre like '%#{cliente}%' " if cliente.to_str.length > 0 if !cliente.nil?
+    
+    query << ";"
+    
+    @ventas = NoCompra.find_by_sql(query)
+#    @compras = query
+  end
+  
   private
     def buscar_venta
       @venta = NoCompra.find(params[:id])
