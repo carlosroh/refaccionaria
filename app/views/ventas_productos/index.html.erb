@@ -1,16 +1,22 @@
 <!--- informacion de la venta --->
 <%= render @venta %>
 
-<% if !@venta.cerrado %>
+<% if !@venta.cerrado or current_empleado.administrador %>
   <h2>Busqueda de producto</h2>
   <%= link_to 'Agregar producto',new_no_compra_ventas_producto_path(@venta), class: 'btn' %>
+
+  <>%= render 'form' %>
+  
 <% end %>
+
+
 
 <h2>Lista de productos de la venta</h2>
 
 <table class="table">
   <tr>
-    <th>Producto</th>
+    <th>ID</th>
+    <th>Descripcion</th>
     <th>Cantidad producto</th>
     <th>Precios</th>
     <th>Importe</th>
@@ -21,8 +27,8 @@
 
 <% @ventas_productos.each do |ventas_producto| %>
   <tr>
-    <% nombre = Producto.find(ventas_producto.producto_id).descripcion %>
-    <td><%= nombre %></td>
+    <td><%= ventas_producto.producto_id %></td>
+    <td><%= nombre_producto(ventas_producto.producto_id) %></td>
     <td><%= ventas_producto.cantidad_producto %></td>
     <td><%= ventas_producto.precio %></td>
     <td><%= ventas_producto.precio * ventas_producto.cantidad_producto %></td>

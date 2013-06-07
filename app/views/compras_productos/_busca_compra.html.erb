@@ -1,0 +1,23 @@
+<!--- formulario de busqueda de compras --->
+
+<h1>Busqueda de compras</h1>
+<% @compras_producto = ComprasProducto.all %>
+
+<%= form_tag(@compras_producto) do |f| %>
+  <div class="field">
+    <%= f.label :num_factura %><br />
+    <%= f.number_field :num_factura %>
+  </div>
+  
+  <div> <strong> Rango de fechas </strong>
+    <div class="field">
+      <%= f.label 'Fecha' %><br />
+      <%= f.date_select :fecha_factura %>
+    </div>
+    
+    <div class="field">
+      <%= f.label 'Fecha' %><br />
+      <%= f.date_select :fecha_factura %>
+    </div>
+  </div>
+<% end %>

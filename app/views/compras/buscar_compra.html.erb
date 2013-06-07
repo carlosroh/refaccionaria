@@ -1,0 +1,24 @@
+<!--- formulario de busqueda de compras --->
+
+<h1>Busqueda de compras</h1>
+
+<%= form_tag '/compras/buscar_compra', class: 'form-horizontal' do %>
+  <%=label_tag 'Vendedor' %>
+  <%=text_field_tag 'vendedor'%>
+
+  <%=label_tag 'Proveedor' %>
+  <%=text_field_tag 'proveedor'%>
+
+  <%=label_tag 'Fecha de inicio' %>
+  <%=select_date Compra.first.fecha_factura, :prefix => :start_date %>
+
+  <%=label_tag 'Fecha final' %>
+  <%=select_date Date.today, :prefix => :start_date %>
+
+  <div><%= submit_tag 'Buscar', class: 'btn btn-primary btn-medium' %></div>
+  
+  <%= @compras %>
+  
+  <h2>Resultados de la busqueda</h2>
+  <%= render 'tabla' %>
+<% end %>

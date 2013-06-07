@@ -2,6 +2,8 @@
 
 <%= render @compra %>
 
+<%= render 'busca_compra' %>
+
 <% if !@compra.cerrado %>
   <h2>Busqueda de producto</h2>
   <%= link_to 'Agregar producto', new_compra_compras_producto_path(@compra),class: 'btn btn-large' %>

@@ -4,4 +4,9 @@ module VentasProductosHelper
     interaccion.cerrado = true
     interaccion.save
   end
+  
+  def nombre_producto(id)
+    return Producto.find(id).descripcion if !id.nil?
+  end
+  
 end

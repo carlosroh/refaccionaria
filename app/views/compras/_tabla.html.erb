@@ -1,0 +1,30 @@
+<!--- --->
+<table class="table">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Vendedor</th>
+      <th>Proveedor</th>
+      <th>Num factura</th>
+      <th>Fecha</th>
+      <th>Estado</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody class="list">
+  <% @compras.each do |compra| %>
+    <tr class=" <%= compra.cerrado ? "success" : "error" %> ">  
+      <td><%= compra.id %></td>
+      <td><%= nombre_empleado(compra.num_empleado) %></td>
+      <td class="proveedor"><%= nombre_proveedor(compra.proveedor_id) %></td>
+      <td><%= compra.num_factura %></td>
+      <td><%= compra.fecha_factura %></td>
+      <td><%= estado(compra)  %></td>
+      <td><%= link_to 'Mostrar', compra_compras_productos_path(compra) %></td>
+      <td><%= link_to 'Destruir', compra, method: :delete, data: { confirm: 'Esta seguro que quiere eliminar la compra?' } %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

@@ -10,6 +10,11 @@ Refaccionaria::Application.routes.draw do
       get :cerrar_compra
     end
     
+    collection do
+      get :buscar_compra
+      post :buscar_compra
+    end
+    
     resources :compras_productos do
       get :autocomplete_producto_descripcion, :on => :collection
     end
@@ -27,8 +32,6 @@ Refaccionaria::Application.routes.draw do
 
   resources :proveedors
   resources :clientes
-
-
   # Rutas de ayuda para la gestion de la sesion
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
