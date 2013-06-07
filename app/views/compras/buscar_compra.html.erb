@@ -10,14 +10,12 @@
   <%=text_field_tag 'proveedor'%>
 
   <%=label_tag 'Fecha de inicio' %>
-  <%=select_date Compra.first.fecha_factura, :prefix => :start_date %>
+  <%=select_date Compra.first.fecha_factura, :prefix => :fecha_inicio %>
 
   <%=label_tag 'Fecha final' %>
-  <%=select_date Date.today, :prefix => :start_date %>
+  <%=select_date Date.today, :prefix => :fecha_final %>
 
   <div><%= submit_tag 'Buscar', class: 'btn btn-primary btn-medium' %></div>
-  
-  <%= @compras %>
   
   <h2>Resultados de la busqueda</h2>
   <%= render 'tabla' %>

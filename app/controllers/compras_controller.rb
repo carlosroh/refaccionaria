@@ -57,12 +57,19 @@ class ComprasController < ApplicationController
     proveedor = params[:proveedor]
     fecha_inicio = params[:fecha_inicio]
     fecha_final = params[:fecha_final]
-
-    print fecha_inicio
-
-    @compras = Compra.find_by_sql( "select compras.id, compras.num_empleado, compras.cerrado, compras.proveedor_id, compras.num_factura, compras.fecha_factura from (compras inner join empleados on compras.num_empleado=empleados.id) inner join proveedors on proveedors.id = compras.proveedor_id where compras.created_at BETWEEN '#{fecha_inicio}' AND '#{fecha_final}' order by compras.created_at;" )
     
-#    redirect_to buscar_compra_compras_path
+    query = "select compras.id, compras.num_empleado, compras.cerrado, compras.proveedor_id, compras.num_factura, compras.fecha_factura from (compras inner join empleados on compras.num_empleado=empleados.id) inner join proveedors on proveedors.id = compras.proveedor_id "
+    
+    query << "where compras.created_at BETWEEN '#{fecha_inicio[:year]}/#{fecha_inicio[:month]}/#{fecha_inicio[:day]}' AND '#{fecha_final[:year]}/#{fecha_final[:month]}/#{fecha_final[:day]}' " if !fecha_inicio.nil? or !fecha_final.nil? or !vendedor.nil? or !proveedor.nil?
+    
+    query << "and empleados.nombre like '%#{vendedor}%' " if vendedor.to_str.length > 0 if !vendedor.nil?
+    
+    query << "and compras.proveedor_id like '%#{proveedor}%' " if proveedor.to_str.length > 0 if !proveedor.nil?
+    
+    query <<";"
+    
+#    @compras = Compra.find_by_sql( "select compras.id, compras.num_empleado, compras.cerrado, compras.proveedor_id, compras.num_factura, compras.fecha_factura from (compras inner join empleados on compras.num_empleado=empleados.id) inner join proveedors on proveedors.id = compras.proveedor_id where compras.created_at BETWEEN '#{fecha_inicio[:year]}/#{fecha_inicio[:month]}/#{fecha_inicio[:day]}' AND '#{fecha_final[:year]}/#{fecha_final[:month]}/#{fecha_final[:day]}' or empleados.nombre = '#{vendedor}' order by compras.created_at;" )
+    @compras = Compra.find_by_sql(query)
   end
   
   private

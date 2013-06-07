@@ -1,9 +1,7 @@
 <h1>Lista de compras</h1>
 <p id="notice" class="lead" style="color: red;"><%= flash[:error] %></p>
 
-<%= link_to 'Buscar compra', buscar_compra_compras_path, class: 'btn' %>
-
 <%= render 'tabla' %>
-
 <br />
-<%= link_to 'Nueva Compra', new_compra_path, class: 'btn btn-large' %>
+<%= link_to 'Nueva Compra', new_compra_path, class: 'btn btn-large btn-primary' %>
+<%= link_to 'Buscar compra', buscar_compra_compras_path, class: 'btn btn-large' %>
